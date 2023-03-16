@@ -1,5 +1,6 @@
-<%= simple_form_for @airplane do |f| %>
+<%= simple_form_for @airplane, html: {data: {controller: "photo-preview"}} do |f| %>
   <%= f.input :name %>
-  <%= f.input :photo, as: :file%>
+  <%= image_tag "", width: 300, class: "hidden", id: "photo-preview", data: { photo_preview_target: "preview" } %>
+  <%= f.input :photo, as: :file, input_html: { class: 'd-none', data: { photo_preview_target: "input", action:"change->photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo'%>
   <%= f.submit %>
 <% end %>
